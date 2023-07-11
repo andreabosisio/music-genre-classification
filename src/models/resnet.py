@@ -277,7 +277,7 @@ class ResNet(nn.Module):
         self.layer1 = self._make_layer(block, 64, layers[0], reduction=self.reductions[0])
         self.layer2 = self._make_layer(block, 128, layers[1], reduction=self.reductions[1], stride=2, dilate=replace_stride_with_dilation[0])
         self.layer3 = self._make_layer(block, 256, layers[2], reduction=self.reductions[2], stride=2, dilate=replace_stride_with_dilation[1])
-        self.layer4 = self._make_layer(block, 512, layers[3], reduction=self.reductions[3], stride=2, dilate=replace_stride_with_dilation[2])
+        #self.layer4 = self._make_layer(block, 512, layers[3], reduction=self.reductions[3], stride=2, dilate=replace_stride_with_dilation[2])
         self.avg_pool = nn.AdaptiveAvgPool2d((1, 1))  # this is a GAP layer (avg pooling with output WxH = 1x1)
 
         self.use_dropout = True if fc_dropout is not None else False
@@ -363,7 +363,7 @@ class ResNet(nn.Module):
         x = self.layer1(x)
         x = self.layer2(x)
         x = self.layer3(x)
-        x = self.layer4(x)
+        #x = self.layer4(x)
 
         x = self.avg_pool(x)
         x = torch.flatten(x, 1)
