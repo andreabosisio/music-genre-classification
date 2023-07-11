@@ -283,7 +283,8 @@ class ResNet(nn.Module):
         self.use_dropout = True if fc_dropout is not None else False
         self.dropout = nn.Dropout(fc_dropout) if self.use_dropout else None
 
-        self.fc = nn.Linear(512 * block.expansion, num_classes, bias=out_bias)
+        #self.fc = nn.Linear(512 * block.expansion, num_classes, bias=out_bias)
+        self.fc = nn.Linear(256 * block.expansion, num_classes, bias=out_bias)
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
